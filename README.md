@@ -1,7 +1,7 @@
 # StridesBackend
 Test for back-end
 
-# Explaination
+# Explanation
     This back-end uses SQLite3 as database. DB file is placed in root project folder.
     I used customized middleware to auth the request. In each request except signup reqeust,
     we should put "Authorization" key and value(password that exists in the DB) into the header of request.

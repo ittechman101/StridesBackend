@@ -48,9 +48,10 @@ router.post('/signup', async (req, res)=>{
 })
 
 router.get('/users', authMiddleware, async(req, res)=>{
-    if(req.header.Authorization == null)
+    if(!req.body.isAuthorized)
     {
-        return res.status(401).send("Access Denied(Invalid Credentials)");
+        res.status(401).send("Access Denied(Invalid Credentials)");
+        return;
     }
 
     const userlist = await User.findAll();
@@ -59,9 +60,10 @@ router.get('/users', authMiddleware, async(req, res)=>{
 })
 
 router.get('/users/:id', authMiddleware, async(req, res)=>{
-    if(req.header.Authorization == null)
+    if(!req.body.isAuthorized)
     {
-        return res.status(401).send("Access Denied(Invalid Credentials)");
+        res.status(401).send("Access Denied(Invalid Credentials)");
+        return;
     }
 
     // if request parameter does not exist, then return all users
